@@ -23,9 +23,7 @@ def client_manager(client):
     except:
         clients.remove(client)
         client_name_lookup.pop(client, name)
-        send_all(b"Server", name+b' Has Disconnected!')
-        print("Server: "+str(name, 'UTF-8')+ " has Disconnected!")
-        
+        send_all(b"Server", name+b' Has Disconnected!')        
 
 def on_connect(client):
     name = client.recv(32)
