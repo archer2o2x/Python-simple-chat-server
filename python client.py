@@ -38,13 +38,14 @@ class connectedGUI(object):
         self.messages_body.config(yscrollcommand=messages_scroll.set)
         messages_scroll.config(command=self.messages_body.yview)
         self.textbar_message = tk.Entry(textbar, width=74)
+        self.textbar_message.bind("<Return>",self.send)
         self.textbar_message.grid(row=0, column=0)
         textbar_send = tk.Button(textbar, text="Send", command=self.send)
         textbar_send.grid(row=0, column=1)
 
         window.mainloop()
 
-    def send(self):
+    def send(self, event=None):
         text = self.textbar_message.get()
         try:
             self.sock.send(bytes(text, "UTF-8"))
